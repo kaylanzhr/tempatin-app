@@ -12,7 +12,7 @@ export function Navbar() {
   const menuButton = useRef<HTMLButtonElement>(null);
   return <>
     <header className="site-header" onKeyDown={(event) => { if (event.key === "Escape" && menuOpen) { setMenuOpen(false); menuButton.current?.focus(); } }}>
-      <div className="shell flex min-h-20 items-center justify-between gap-4">
+      <div className="shell flex min-h-[68px] items-center justify-between gap-4">
         <Link href="/" className="header-brand" aria-label="Tempat.In, beranda">
           <Image src="/images/tempatin-logo.png" alt="Logo Tempat.In" width={282} height={295} className="header-logo" preload />
           <span className="wordmark" aria-hidden="true">Tempat<span>.In</span></span>
