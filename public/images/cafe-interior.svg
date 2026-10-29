@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 700" fill="none">
+<defs><linearGradient id="wall" x2="1" y2="1"><stop stop-color="#e8d4b5"/><stop offset="1" stop-color="#bd9976"/></linearGradient><linearGradient id="glass" x2="0" y2="1"><stop stop-color="#a6b8a3"/><stop offset="1" stop-color="#dfdfbc"/></linearGradient></defs>
+<path fill="url(#wall)" d="M0 0h900v700H0z"/><path fill="#b08c65" d="M0 470h900v230H0z"/>
+<path fill="#69533b" d="M65 55h420v365H65z"/><path fill="url(#glass)" d="M78 68h394v338H78z"/><path fill="#879a78" d="M78 238c65-123 88 15 151-48s89-100 159-4 84 43 84 43v177H78z"/><path stroke="#69533b" stroke-width="12" d="M274 65v345M76 237h398"/>
+<path fill="#e8d5ad" opacity=".38" d="m77 408 396 1 350 234H196z"/><path stroke="#76563f" stroke-width="8" d="M670 0v96M795 0v137"/><path fill="#4f4535" d="M610 138a60 60 0 0 1 120 0zm134 43a51 51 0 0 1 102 0z"/><path fill="#deb77a" d="M611 138h119v8H611zm134 43h101v8H745z"/>
+<path fill="#70513c" d="M533 332h310v22H533z"/><path fill="#f4e9d1" d="M560 270h44v62h-44zm60 17h40v45h-40z"/><path fill="#b47f55" d="M715 285h66v47h-66z"/>
+<path fill="#72543f" d="M585 421h269v127H585z"/><path fill="#947053" d="M585 403h269v61H585z"/>
+<path stroke="#533e2e" stroke-width="17" d="m283 484-23 173m275-173 26 173"/><path fill="#845d3e" d="M185 458h430v39H185z"/><path fill="#bd8b58" d="m185 458 83-65h320l27 65z"/>
+<path fill="#e0d5ba" d="m315 418 105-10 42 28-106 12z"/><path stroke="#8f7660" stroke-width="3" d="m367 422 52-5m-40 15 52-5"/><ellipse cx="500" cy="434" rx="28" ry="10" fill="#e1cda4"/><path fill="#eee1c7" d="M481 404h33v26c-7 9-26 9-33 0z"/><path stroke="#eee1c7" stroke-width="6" d="M514 409c24-7 24 23 0 16"/>
+<path stroke="#5b4835" stroke-width="10" d="m117 541-9 111m95-111 9 111m455-115-9 111m95-111 9 111"/><path fill="#987452" d="M89 432h135v115H89zm546-3h140v115H635z"/><path fill="#b58e64" d="M83 528h148v24H83zm546 0h152v24H629z"/>
+<path fill="#b17c56" d="M33 449h79l-13 94H46z"/><path stroke="#526449" stroke-width="7" d="M73 459V289"/><path fill="#617450" d="M74 380c-69-5-73-70-73-70 66 3 77 34 73 70zm0-42c-8-65 49-100 49-100 23 66-6 94-49 100zm0 86c12-64 80-66 80-66-7 64-44 82-80 66z"/>
+</svg>
