@@ -1,14 +1,16 @@
 import { CafeIllustration } from "./cafe-illustration";
 
-export function PromoCard() {
+export function PromoCard({ headingLevel = 1 }: { headingLevel?: 1 | 2 }) {
+  const Heading = headingLevel === 1 ? "h1" : "h2";
+
   return (
     <aside className="login-promo-card" aria-label="Tentang Tempat.In">
       <span className="login-badge">Find. Book. Chill.</span>
-      <h1>
+      <Heading>
         Cari tempat nugas,
         <br />
         tanpa muter-muter.
-      </h1>
+      </Heading>
       <p>
         Temukan kafe yang pas, cek kursinya,
         <br />
