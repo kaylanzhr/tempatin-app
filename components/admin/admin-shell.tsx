@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import {
   useEffect,
@@ -23,7 +24,14 @@ const mainNavigation: Array<{ label: string; href: string; icon: IconName }> = [
 function Brand() {
   return (
     <Link href="/admin" className={styles.brand} aria-label="Tempat.In, dashboard admin">
-      <span className={styles.brandMark} aria-hidden="true"><Icon name="cup" /></span>
+      <Image
+        src="/images/tempatin-logo.png"
+        alt=""
+        width={282}
+        height={295}
+        className={styles.brandLogo}
+        preload
+      />
       <span>Tempat.In</span>
     </Link>
   );
