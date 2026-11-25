@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "targets": {
+    "/login": {
+      "targetKind": "new-ui",
+      "projectId": "b83c769a-cea0-495d-8c8b-64b13bcf487f",
+      "activeDraftId": "8c8354e3-7d7b-4f78-891a-80cb4b40b6ca",
+      "designSystemPath": ".superdesign/design-system.md",
+      "referenceIds": [
+        "d007697c-b848-44ef-ab6b-41e41e77dea1",
+        "tempatin-logo"
+      ],
+      "brandAssets": {
+        "logo": {
+          "assetKey": "tempatin-logo",
+          "url": "https://vgbujcuwptvheqijyjbe.supabase.co/storage/v1/object/public/hmac-uploads/projects/b83c769a-cea0-495d-8c8b-64b13bcf487f/brand-assets/tempatin-logo/tempatin-logo.png",
+          "sourcePath": "public/images/tempatin-logo.png"
+        }
+      },
+      "contextFiles": [
+        ".superdesign/design-system.md",
+        "app/globals.css",
+        "app/layout.tsx",
+        "components/navbar.tsx",
+        "components/icon.tsx"
+      ],
+      "fingerprints": {
+        ".superdesign/design-system.md": "06b158e1a6d212375aed301582e657806a397219874cc594befb96e14954493f",
+        "app/globals.css": "e76710d073a609baa0b8076d00f35d06b177f719466a67b35dcebf8eedb0af02",
+        "app/layout.tsx": "35f7ecb11b2306ca12be1aea409924959f7f444a0b0bb9197c53b18e07779669",
+        "components/navbar.tsx": "878bcc663445f30e56f8a811e5c9e161dcf15c6aefed7ea4b9af974b4abd8911",
+        "components/icon.tsx": "65c0a7d1fae24ff3f93c48002e560a882d3b9a6c50d022c298afbf238fcbd78a"
+      },
+      "components": [],
+      "drafts": {
+        "8c8354e3-7d7b-4f78-891a-80cb4b40b6ca": {
+          "title": "Tempat.In Login",
+          "visualDirection": "faithful warm cafe login based on supplied screenshot",
+          "parentDraftId": null,
+          "currentVersion": 1
+        }
+      },
+      "updatedAt": "2026-11-20T16:21:02.9133214+07:00"
+    }
+  }
+}
