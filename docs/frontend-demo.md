@@ -1,6 +1,7 @@
 # Frontend demo Tempat.In
 
-Tahap ini hanya mencakup landing page dan eksplorasi kafe pada `/`.
+Tahap ini mencakup landing page dan eksplorasi kafe pada `/`, login pada `/login`,
+serta dashboard admin terlindungi pada `/admin`.
 Kebutuhan utama tetap mengikuti [PRD](../PRD.md).
 
 ## Menjalankan
@@ -33,6 +34,12 @@ npm run start
 - [Data demo](../lib/demo-cafes.ts): tipe TypeScript dan enam kafe fiktif.
 - [Tema](../app/globals.css): warna brand, layout responsif, dan focus state.
 - [Layout](../app/layout.tsx): bahasa Indonesia dan metadata.
+- [Dashboard admin](../app/admin/page.tsx): ringkasan platform, grafik reservasi,
+  akses tambah mitra, dan laporan yang perlu ditangani.
+- [Komponen admin](../components/admin): sidebar/drawer responsif, header, kartu metrik,
+  grafik, panel tindakan, status, tabel, serta state loading, kosong, dan gagal.
+- [Data dashboard admin](../lib/admin/dashboard-data.ts): data simulasi bertipe yang
+  dapat diganti dengan hasil pengambilan data Supabase pada tahap integrasi.
 
 ## Mengganti data dan gambar
 
@@ -41,6 +48,20 @@ Data demo disimpan lokal; tidak ada koneksi database. Nama kolom fasilitas dan
 14.00 WIB. Label relatif dihitung terhadap waktu ini, bukan jam perangkat.
 Kursi contoh dihitung dari kuota dikurangi pemakaian manual, tanpa reservasi.
 Integrasi booking nanti wajib mengikuti perhitungan dan validasi server pada PRD.
+
+## Konfigurasi autentikasi
+
+Login menggunakan Supabase Auth dan tabel `profiles` pada PRD sebagai sumber role tepercaya.
+Sediakan environment variable berikut pada lingkungan lokal/deployment, tanpa memasukkan nilainya ke Git:
+
+```text
+NEXT_PUBLIC_SUPABASE_URL
+NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY
+```
+
+Kolom `profiles.role` harus berisi `pengguna`, `mitra`, atau `admin`, dan `profiles.is_active`
+harus bernilai `true` agar akun dapat masuk. Route tujuan sementara `/pengguna`, `/mitra`,
+dan `/admin` memeriksa kembali sesi serta role di server.
 
 Referensi UI PNG, foto kafe, dan logo terpisah belum tersedia saat implementasi.
 Ilustrasi SVG lokal digunakan sebagai placeholder, dengan label bukan foto kafe.
@@ -51,8 +72,9 @@ ketika foto asli yang berizin sudah tersedia.
 
 ## Batas demo
 
-Tidak ada login, database, route detail kafe, form booking, atau dashboard.
-Tombol Masuk hanya memberikan informasi. Tombol Lihat Detail membuka dialog.
+Belum ada route detail kafe, form booking, atau data dashboard produksi. Dashboard admin
+menampilkan data simulasi berlabel jelas; halaman tujuan Pengguna dan Mitra masih berupa
+placeholder terlindungi. Tombol Lihat Detail pada eksplorasi kafe membuka dialog.
 Semua kafe, alamat, dan angka kursi adalah fiktif, bukan mitra atau data langsung.
 
 ## Checklist uji manual
