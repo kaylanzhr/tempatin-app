@@ -2,6 +2,10 @@ import { Navbar } from "@/components/navbar";
 import { CafeExplorer } from "@/components/cafe-explorer";
 import { CafeImage } from "@/components/cafe-image";
 import { Icon, type IconName } from "@/components/icon";
+import { getPublicCafes } from "@/lib/cafes";
+import { connection } from "next/server";
+
+export const instant = false;
 
 const benefits: { icon: IconName; title: string; text: string }[] = [
   { icon: "plug", title: "Cari fasilitas yang kamu butuhkan.", text: "Butuh colokan, mushola, atau suasana outdoor? Pilih fasilitas yang mendukung cara belajarmu." },
@@ -15,7 +19,9 @@ const questions = [
   ["Apakah pemesanan mencakup makanan dan minuman?", "Tidak. Pada versi MVP lengkap, booking hanya untuk kursi, tanpa pembayaran melalui website. Pemesanan makanan dan minuman tidak termasuk dalam fitur Tempat.In."],
 ];
 
-export default function Home() {
+export default async function Home() {
+  await connection();
+  const { cafes, isDemo, error, referenceTime } = await getPublicCafes();
   return <>
     <a className="skip-link" href="#konten">Lewati ke konten utama</a>
     <Navbar />
@@ -35,7 +41,7 @@ export default function Home() {
         </div>
       </section>
       <div className="border-y border-line"><div className="shell flex flex-wrap items-center justify-between gap-4 py-5 text-sm text-muted"><p>Tempat yang pas untuk setiap cara belajar.</p><div className="flex flex-wrap gap-x-7 gap-y-3"><span className="flex items-center gap-2"><Icon name="plug" />Fasilitas pilihanmu</span><span className="flex items-center gap-2"><Icon name="chair" />Informasi kursi</span><span className="flex items-center gap-2"><Icon name="pin" />Seputar Jatinangor</span></div></div></div>
-      <CafeExplorer />
+      <CafeExplorer cafes={cafes} isDemo={isDemo} error={error} referenceTime={referenceTime} />
       <section className="section-pad shell" aria-labelledby="benefits-heading">
         <div className="mb-12 grid gap-5 md:grid-cols-2 md:items-end"><div><p className="eyebrow">BIAR NUGAS LEBIH NYAMAN</p><h2 id="benefits-heading" className="section-heading mt-3">Energinya buat tugas,<br /><span className="font-editorial font-normal italic">bukan cari tempat.</span></h2></div><p className="max-w-md leading-7 text-muted md:justify-self-end">Dari fokus sendiri sampai diskusi bareng, temukan ruang yang mendukung rencanamu hari ini.</p></div>
         <div className="grid gap-9 md:grid-cols-3">{benefits.map((benefit) => <article key={benefit.title} className="border-t border-line pt-7"><div className="feature-icon mb-5"><Icon name={benefit.icon} width={26} height={26} /></div><h3 className="max-w-xs text-xl leading-7 font-semibold">{benefit.title}</h3><p className="mt-3 text-sm leading-7 text-muted">{benefit.text}</p></article>)}</div>
