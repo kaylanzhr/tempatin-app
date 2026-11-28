@@ -10,7 +10,7 @@ export type AccountProfile = {
 };
 
 export const roleDestinations: Record<AccountRole, string> = {
-  pengguna: "/pengguna",
+  pengguna: "/",
   mitra: "/mitra",
   admin: "/admin",
 };
