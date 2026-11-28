@@ -2,8 +2,9 @@
 
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
-import { useActionState, useState, type FormEvent } from "react";
+import { useActionState, useEffect, useState, type FormEvent } from "react";
 import { login, type LoginState } from "@/app/login/actions";
+import { getBrowserSupabaseClient } from "@/lib/supabase/browser";
 
 type ClientErrors = NonNullable<LoginState["errors"]>;
 const initialLoginState: LoginState = {};
@@ -26,14 +27,61 @@ export function LoginForm() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [clientErrors, setClientErrors] = useState<ClientErrors>({});
+  const [sessionChecked, setSessionChecked] = useState(false);
+  const [activeSession, setActiveSession] = useState(false);
+  const [sessionActionPending, setSessionActionPending] = useState(false);
+  const [sessionActionError, setSessionActionError] = useState<string | null>(null);
   const searchParams = useSearchParams();
   const next = searchParams.get("next") ?? "";
   const statusMessage =
-    searchParams.get("status") === "akun-tidak-aktif"
+    searchParams.get("reason") === "idle"
+      ? "Sesi kamu berakhir karena tidak ada aktivitas. Silakan masuk kembali."
+      : searchParams.get("status") === "akun-tidak-aktif"
       ? "Akunmu sedang tidak aktif. Hubungi pengelola Tempat.In untuk bantuan."
       : null;
   const emailError = clientErrors.email?.[0] ?? state.errors?.email?.[0];
   const passwordError = clientErrors.password?.[0] ?? state.errors?.password?.[0];
+
+  useEffect(() => {
+    let mounted = true;
+    const supabase = getBrowserSupabaseClient();
+    if (!supabase) {
+      const checkTimer = window.setTimeout(() => {
+        if (mounted) setSessionChecked(true);
+      }, 0);
+      return () => {
+        mounted = false;
+        window.clearTimeout(checkTimer);
+      };
+    }
+
+    void supabase.auth.getSession().then(({ data }) => {
+      if (!mounted) return;
+      setActiveSession(Boolean(data.session));
+      setSessionChecked(true);
+    });
+
+    return () => { mounted = false; };
+  }, []);
+
+  async function continueToLogin() {
+    const supabase = getBrowserSupabaseClient();
+    if (!supabase) {
+      setActiveSession(false);
+      return;
+    }
+
+    setSessionActionPending(true);
+    setSessionActionError(null);
+    const { error } = await supabase.auth.signOut({ scope: "local" });
+    if (error) {
+      setSessionActionError("Sesi lama belum dapat diakhiri. Coba lagi.");
+      setSessionActionPending(false);
+      return;
+    }
+    setActiveSession(false);
+    setSessionActionPending(false);
+  }
 
   function validate(event: FormEvent<HTMLFormElement>) {
     const form = event.currentTarget;
@@ -65,7 +113,19 @@ export function LoginForm() {
         </p>
       )}
 
-      <form action={formAction} onSubmit={validate} noValidate aria-busy={pending}>
+      {!sessionChecked && <p className="login-session-loading" role="status">Memeriksa sesi...</p>}
+
+      {sessionChecked && activeSession && (
+        <div className="login-session-choice" role="status">
+          <p>Sesi akunmu masih aktif di browser ini.</p>
+          {sessionActionError && <p className="login-inline-error" role="alert">{sessionActionError}</p>}
+          <button type="button" className="login-submit-button" onClick={continueToLogin} disabled={sessionActionPending}>
+            {sessionActionPending ? "Menyiapkan login..." : "Login ulang / Ganti akun"}
+          </button>
+        </div>
+      )}
+
+      {sessionChecked && !activeSession && <form action={formAction} onSubmit={validate} noValidate aria-busy={pending}>
         <input type="hidden" name="next" value={next} />
         <div className="login-field-group">
           <label htmlFor="email">Email</label>
@@ -135,7 +195,7 @@ export function LoginForm() {
         <p className="login-register-prompt">
           Belum punya akun? <Link href="/daftar">Daftar sekarang</Link>
         </p>
-      </form>
+      </form>}
     </section>
   );
 }

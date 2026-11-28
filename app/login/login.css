@@ -287,6 +287,22 @@
   line-height: 1.5;
 }
 
+.login-session-loading,
+.login-session-choice {
+  color: #7c746b;
+  font-size: 12px;
+  line-height: 1.5;
+}
+
+.login-session-choice {
+  display: grid;
+  gap: 16px;
+  padding: 14px;
+  border: 1px solid #e2d9ce;
+  border-radius: 9px;
+  background: #fff;
+}
+
 .login-form-options {
   min-height: 24px;
   display: flex;

@@ -10,7 +10,7 @@ import {
   type ReactNode,
 } from "react";
 import { Icon, type IconName } from "@/components/icon";
-import { logoutAdmin } from "@/app/admin/actions";
+import { LogoutButton } from "@/components/auth/logout-button";
 import styles from "./admin-dashboard.module.css";
 
 const mainNavigation: Array<{ label: string; href: string; icon: IconName }> = [
@@ -70,12 +70,10 @@ function SidebarContent({ onNavigate }: { onNavigate?: () => void }) {
           <Icon name="settings" />
           <span>Pengaturan Akun</span>
         </Link>
-        <form action={logoutAdmin}>
-          <button type="submit" className={styles.logoutButton}>
-            <Icon name="logout" />
-            <span>Keluar</span>
-          </button>
-        </form>
+        <LogoutButton className={styles.logoutButton}>
+          <Icon name="logout" />
+          <span>Keluar</span>
+        </LogoutButton>
       </div>
     </>
   );
