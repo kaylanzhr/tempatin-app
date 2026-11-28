@@ -62,8 +62,8 @@ export function CafeSearchPage({
             <div className="explore-filter-heading"><h2>Filter tempat</h2><button type="button" onClick={reset}>Reset</button></div>
             <fieldset disabled={state !== "ready"}>
               <legend>Fasilitas</legend>
-              {filterOptions.map(({ id, key, label }) => <label className="explore-check" key={key}>
-                <input type="checkbox" checked={selected.includes(id)} onChange={() => toggleFacility(id)} />
+              {filterOptions.map(({ key, label }) => <label className="explore-check" key={key}>
+                <input type="checkbox" checked={selected.includes(key)} onChange={() => toggleFacility(key)} />
                 <span>{label}</span>
               </label>)}
             </fieldset>
