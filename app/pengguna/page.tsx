@@ -1,22 +1,21 @@
 import type { Metadata } from "next";
 import { Suspense } from "react";
-import {
-  ProtectedPlaceholderFallback,
-  ProtectedPlaceholderPage,
-} from "@/components/placeholder-page";
+import { redirect } from "next/navigation";
+import { ProtectedPlaceholderFallback } from "@/components/placeholder-page";
+import { requireRole } from "@/lib/auth/guards";
 
 export const metadata: Metadata = { title: "Area Pengguna | Tempat.In" };
+
+async function RedirectUserHome() {
+  await requireRole("pengguna", "/pengguna");
+  redirect("/");
+  return null;
+}
 
 export default function UserAreaPage() {
   return (
     <Suspense fallback={<ProtectedPlaceholderFallback />}>
-      <ProtectedPlaceholderPage
-        role="pengguna"
-        currentPath="/pengguna"
-        title="Kamu berhasil masuk"
-        description="Ini adalah tujuan sementara untuk akun Pengguna. Fitur pencarian tetap dapat diakses dari beranda."
-      />
+      <RedirectUserHome />
     </Suspense>
   );
 }
-
