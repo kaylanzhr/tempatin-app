@@ -514,3 +514,60 @@
   }
 }
 
+/* Keep the login header visually aligned with the registration header. */
+.login-page:not(.register-page) .login-header {
+  min-height: 0;
+  border-color: #e3dcd1;
+}
+
+.login-page:not(.register-page) .login-header-inner {
+  min-height: clamp(68px, 6.05vw, 88px);
+  width: min(1328px, calc(100% - 2 * (clamp(32px, 4.445vw, 64px) - 8px)));
+  padding-right: clamp(0px, 3vw, 44px);
+}
+
+.login-page:not(.register-page) .login-brand {
+  color: #302d25;
+  font-size: clamp(21px, 1.8vw, 26px);
+  letter-spacing: -0.025em;
+}
+
+.login-page:not(.register-page) .login-logo {
+  width: auto;
+  height: clamp(38px, 3.45vw, 50px);
+  padding: 6px;
+  border-radius: 10px;
+  background: #322e25;
+}
+
+.login-page:not(.register-page) .login-header-nav {
+  gap: clamp(24px, 4.4vw, 64px);
+  color: #736d63;
+  font-size: 14px;
+}
+
+@media (max-width: 600px) {
+  .login-page:not(.register-page) .login-header-inner {
+    min-height: 64px;
+    width: calc(100% - 64px);
+    padding-right: 0;
+    gap: 10px;
+  }
+
+  .login-page:not(.register-page) .login-brand {
+    gap: 6px;
+    font-size: 18px;
+  }
+
+  .login-page:not(.register-page) .login-logo {
+    height: 32px;
+    padding: 4px;
+    border-radius: 7px;
+  }
+
+  .login-page:not(.register-page) .login-header-nav {
+    gap: 12px;
+    font-size: 12px;
+  }
+}
+
