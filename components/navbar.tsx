@@ -15,14 +15,14 @@ export function Navbar() {
           <Image src="/images/tempatin-logo.png" alt="Logo Tempat.In" width={282} height={295} className="header-logo" preload />
           <span className="wordmark" aria-hidden="true">Tempat<span>.In</span></span>
         </Link>
-        <nav aria-label="Navigasi utama" className="hidden items-center gap-8 md:flex"><a href="#cari-kafe">Cari Kafe</a><a href="#cara-kerja">Cara Kerja</a><a href="#faq">FAQ</a></nav>
-        <div className="hidden items-center gap-3 md:flex"><Link className="button button-quiet" href="/login">Masuk</Link><a href="#cari-kafe" className="button button-primary">Mulai Cari <Icon name="arrow" /></a></div>
+        <nav aria-label="Navigasi utama" className="hidden items-center gap-8 md:flex"><Link href="/jelajah-tempat">Jelajah Tempat</Link><Link href="/#cara-kerja">Cara Kerja</Link><Link href="/#faq">FAQ</Link></nav>
+        <div className="hidden items-center gap-3 md:flex"><Link className="button button-quiet" href="/login">Masuk</Link><Link href="/jelajah-tempat" className="button button-primary">Mulai Cari <Icon name="arrow" /></Link></div>
         <button ref={menuButton} className="icon-button md:hidden" aria-label={menuOpen ? "Tutup menu" : "Buka menu"} aria-expanded={menuOpen} aria-controls="mobile-menu" onClick={() => setMenuOpen(!menuOpen)}><Icon name={menuOpen ? "close" : "menu"} /></button>
       </div>
       <nav id="mobile-menu" aria-label="Navigasi seluler" className={`${menuOpen ? "flex" : "hidden"} shell flex-col gap-2 pb-5 md:hidden`}>
-        {[ ["#cari-kafe", "Cari Kafe"], ["#cara-kerja", "Cara Kerja"], ["#faq", "FAQ"] ].map(([href, label]) => <a key={href} className="py-3" href={href} onClick={() => setMenuOpen(false)}>{label}</a>)}
+        {[ ["/jelajah-tempat", "Jelajah Tempat"], ["/#cara-kerja", "Cara Kerja"], ["/#faq", "FAQ"] ].map(([href, label]) => <Link key={href} className="py-3" href={href} onClick={() => setMenuOpen(false)}>{label}</Link>)}
         <Link className="button button-outline" href="/login" onClick={() => setMenuOpen(false)}>Masuk</Link>
-        <a href="#cari-kafe" className="button button-primary" onClick={() => setMenuOpen(false)}>Mulai Cari <Icon name="arrow" /></a>
+        <Link href="/jelajah-tempat" className="button button-primary" onClick={() => setMenuOpen(false)}>Mulai Cari <Icon name="arrow" /></Link>
       </nav>
     </header>
   );
