@@ -21,6 +21,13 @@ const paths = {
   lock: "M5 10h14v11H5zM8 10V7a4 4 0 0 1 8 0v3",
   eye: "M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12ZM15 12a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z",
   eyeOff: "M3 3l18 18M10 5.2a10 10 0 0 1 2-.2c6.5 0 10 7 10 7a17 17 0 0 1-3 3.8M6.1 6.9A18 18 0 0 0 2 12s3.5 7 10 7a10 10 0 0 0 5.1-1.4M9.9 9.9a3 3 0 0 0 4.2 4.2",
+  dashboard: "M3 3h7v7H3zM14 3h7v7h-7zM3 14h7v7H3zM14 14h7v7h-7z",
+  database: "M4 5c0-2 4-3 8-3s8 1 8 3-4 3-8 3-8-1-8-3Zm0 0v7c0 2 4 3 8 3s8-1 8-3V5m-16 7v7c0 2 4 3 8 3s8-1 8-3v-7",
+  users: "M16 7a4 4 0 1 1-8 0 4 4 0 0 1 8 0ZM3 21v-2a7 7 0 0 1 14 0v2m2-10a3 3 0 1 1 0-6m2 16v-2a5 5 0 0 0-3-4.6",
+  report: "M6 2h9l4 4v16H6zM14 2v5h5M9 13h6M9 17h6",
+  activity: "M3 12h4l2-7 4 14 2-7h6",
+  settings: "M12 8a4 4 0 1 0 0 8 4 4 0 0 0 0-8Zm0-6v3m0 14v3M4.2 4.2l2.1 2.1m11.4 11.4 2.1 2.1M2 12h3m14 0h3M4.2 19.8l2.1-2.1M17.7 6.3l2.1-2.1",
+  logout: "M10 5V3H4v18h6v-2M14 8l4 4-4 4m4-4H8",
 } as const;
 
 export type IconName = keyof typeof paths;
