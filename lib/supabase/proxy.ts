@@ -80,15 +80,9 @@ export async function updateSession(request: NextRequest) {
 
   const profile = await getAccountProfile(supabase, user.id);
   if (!profile?.isActive) {
-    await supabase.auth.signOut();
+    await supabase.auth.signOut({ scope: "local" });
     return withPendingCookies(
       NextResponse.redirect(new URL("/login?status=akun-tidak-aktif", request.url)),
-    );
-  }
-
-  if (pathname === "/login") {
-    return withPendingCookies(
-      NextResponse.redirect(new URL(roleDestinations[profile.role], request.url)),
     );
   }
 

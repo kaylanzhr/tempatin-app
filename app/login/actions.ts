@@ -59,7 +59,7 @@ export async function login(
 
   const profile = await getAccountProfile(supabase, data.user.id);
   if (!profile) {
-    await supabase.auth.signOut();
+    await supabase.auth.signOut({ scope: "local" });
     return {
       message:
         "Profil akun belum siap digunakan. Hubungi pengelola Tempat.In.",
@@ -67,7 +67,7 @@ export async function login(
   }
 
   if (!profile.isActive) {
-    await supabase.auth.signOut();
+    await supabase.auth.signOut({ scope: "local" });
     return {
       message:
         "Akunmu sedang tidak aktif. Hubungi pengelola Tempat.In untuk bantuan.",
