@@ -11,7 +11,6 @@ export function SeatStatus({ cafe }: { cafe: Cafe }) {
   return <div className="space-y-2">
     <p className={`flex items-center gap-2 text-sm font-semibold ${status.usang ? "text-amber-900" : status.tersisa ? "text-forest" : "text-red-900"}`}><Icon name="chair" />{status.tersisa ? `${status.tersisa} kursi tersisa` : "Penuh · 0 kursi tersisa"}<span className="font-normal text-muted">· demo</span></p>
     <p className="flex items-center gap-1.5 text-xs text-muted"><Icon name="clock" width={14} height={14} />Terakhir diperbarui <time dateTime={cafe.diperbarui_pada}>{status.relatif}</time></p>
-    {status.usang && <p className="stale-note">Lebih dari 24 jam. Informasi mungkin sudah berubah.</p>}
   </div>;
 }
 
