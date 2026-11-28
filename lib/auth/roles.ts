@@ -4,6 +4,7 @@ export const accountRoles = ["pengguna", "mitra", "admin"] as const;
 export type AccountRole = (typeof accountRoles)[number];
 
 export type AccountProfile = {
+  fullName: string | null;
   role: AccountRole;
   isActive: boolean;
 };
@@ -24,13 +25,17 @@ export async function getAccountProfile(
 ): Promise<AccountProfile | null> {
   const { data, error } = await supabase
     .from("profiles")
-    .select("role,is_active")
+    .select("full_name,role,is_active")
     .eq("id", userId)
     .maybeSingle();
 
   if (error || !data || !isAccountRole(data.role)) return null;
 
-  return { role: data.role, isActive: data.is_active === true };
+  return {
+    fullName: typeof data.full_name === "string" ? data.full_name : null,
+    role: data.role,
+    isActive: data.is_active === true,
+  };
 }
 
 export function safeReturnPath(value: FormDataEntryValue | string | null) {
